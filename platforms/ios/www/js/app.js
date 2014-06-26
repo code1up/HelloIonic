@@ -1,5 +1,9 @@
 (function () {
-    var app = angular.module('app', ['ionic', 'app.controllers']);
+    var app = angular.module('app', [
+        'ionic',
+        'app.controllers',
+        'ngSanitize'
+    ]);
 
     app.run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {

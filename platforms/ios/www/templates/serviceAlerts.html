@@ -3,102 +3,25 @@
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
     <ion-content class="has-header">
-        <div class="list card">
+        <ion-refresher
+                refreshing-icon="ion-loading-c"
+                on-refresh="refresh()">
+        </ion-refresher>
+        <div class="list card" ng-repeat="alert in alerts">
             <div class="item item-avatar">
                 <img src="img/zen-logo-small.png">
 
-                <h2 class="assertive">Urgent Service Alert</h2>
+                <h2 class="assertive">{{ alert.title }}</h2>
 
-                <h2 class="assertive">MANCHESTER</h2>
-
-                <p>23 Jun 2014 10:13 AM</p>
+                <p>{{ alert.publishedDate }}</p>
             </div>
 
             <div class="item item-body">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam animi dignissimos ex
-                    facere fugiat id in laudantium minima molestias necessitatibus pariatur quaerat quod soluta tenetur
-                    totam unde vero, voluptates.
-                </p>
-
-                <p>
-                    <a href="#" class="subdued">5 comments</a>
+                <p ng-bind-html="alert.content">
                 </p>
             </div>
 
             <div class="item tabs tabs-secondary tabs-icon-left">
-                <a class="tab-item" href="#">
-                    <i class="icon ion-chatbox"></i>
-                    Comment
-                </a>
-                <a class="tab-item" href="#">
-                    <i class="icon ion-share"></i>
-                    Share
-                </a>
-            </div>
-        </div>
-        <div class="list card">
-            <div class="item item-avatar">
-                <img src="img/zen-logo-small.png">
-
-                <h2 class="calm">Scheduled Outage</h2>
-
-                <h2 class="calm">BRISTOL</h2>
-
-                <p>21 Jun 2014 18:23</p>
-            </div>
-
-            <div class="item item-body">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam animi dignissimos ex
-                    facere fugiat id in laudantium minima molestias necessitatibus pariatur quaerat quod soluta tenetur
-                    totam unde vero, voluptates.
-                </p>
-
-                <p>
-                    <a href="#" class="subdued">2 comments</a>
-                </p>
-            </div>
-
-            <div class="item tabs tabs-secondary tabs-icon-left">
-                <a class="tab-item" href="#">
-                    <i class="icon ion-chatbox"></i>
-                    Comment
-                </a>
-                <a class="tab-item" href="#">
-                    <i class="icon ion-share"></i>
-                    Share
-                </a>
-            </div>
-        </div>
-        <div class="list card">
-            <div class="item item-avatar">
-                <img src="img/zen-logo-small.png">
-
-                <h2 class="assertive">Urgent Service Alert</h2>
-
-                <h2 class="assertive">SOUTH LONDON</h2>
-
-                <p>22 Jun 2014 23:13</p>
-            </div>
-
-            <div class="item item-body">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam animi dignissimos ex
-                    facere fugiat id in laudantium minima molestias necessitatibus pariatur quaerat quod soluta tenetur
-                    totam unde vero, voluptates.
-                </p>
-
-                <p>
-                    <a href="#" class="subdued">No comments</a>
-                </p>
-            </div>
-
-            <div class="item tabs tabs-secondary tabs-icon-left">
-                <a class="tab-item" href="#">
-                    <i class="icon ion-chatbox"></i>
-                    Comment
-                </a>
                 <a class="tab-item" href="#">
                     <i class="icon ion-share"></i>
                     Share

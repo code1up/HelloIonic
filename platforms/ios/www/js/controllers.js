@@ -9,33 +9,40 @@
     controllers.controller('HomeController', function () {
     });
 
-    controllers.controller('ServiceAlertsController', function ($scope) {
+    controllers.controller('ServiceAlertsController', function ($scope, $http, $timeout) {
+        var _url = 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://status.zen.co.uk/rss/broadband-faults-rss.ashx&callback=JSON_CALLBACK';
 
+        $scope.getAlerts = function () {
+            var deferred = $http
+                .jsonp(_url)
+                .success(function (data) {
+                    $scope.alerts = data.responseData.feed.entries;
+
+                    // TODO: move to 'finally'.
+                    $scope.$broadcast('scroll.refreshComplete');
+                })
+                .error(function () {
+                    console.error("ERROR");
+
+                    // TODO: move to 'finally'.
+                    $scope.$broadcast('scroll.refreshComplete');
+                });
+
+            return deferred.promise;
+        };
+
+        $scope.refresh = function () {
+            $scope.getAlerts();
+        };
+
+        $timeout($scope.getAlerts, 0);
     });
 
     var diagnosticsController = function ($scope, $timeout) {
-        $scope.items = [
-            {
-                name: "A"
-            },
-            {
-                name: "C"
-            },
-            {
-                name: "D"
-            }
-        ];
-
         $scope.refresh = function () {
-            console.log('Refreshing');
-
             $timeout(function () {
-                $scope.items.push({
-                    name: "X"
-                });
-
                 $scope.$broadcast('scroll.refreshComplete');
-            }, 1000);
+            }, 3000);
         };
     };
 
